@@ -1,9 +1,24 @@
-# jsonp with Promise**
+# jsonp with Promise
 
-## example:
+## API
+
+1. __jsonp(url, params, cbName, timeout)__
+  - url: url
+  - params: querystrings, it can also be attached to the url
+  - cbName: set server side callback name, 'callback' for default
+  - timeout: timeout
+
+2. __jsonp.setRemoteCb(cbName)__
+
+set default server side callbak name
+
+## Example
+
 ```js
-jsonp.setRemoteCb('_jsonp')
-jsonp(url,{param: 'foo'}).then(function(data){
+var future = jsonp('//api', {q: 'bar'}, 'cb', 15000)
+future.then(function(data){
   consume(data)
+}).catch(function(err){
+  console.log(err)
 })
 ```
